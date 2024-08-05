@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Your Name</title>
+</head>
+<body>
+    <h1>Enter Your Name</h1>
+    <form id="nameForm">
+        <input type="text" id="name" required>
+        <button type="submit">Send</button>
+    </form>
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            if (name) {
+                let names = localStorage.getItem('names');
+                names = names ? JSON.parse(names) : [];
+                names.push(name);
+                localStorage.setItem('names', JSON.stringify(names));
+                document.getElementById('name').value = '';
+                alert('Name saved successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
