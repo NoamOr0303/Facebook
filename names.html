@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Names</title>
+    <title>רשימת שמות ושמות משפחה</title>
 </head>
 <body>
-    <h1>Names List</h1>
+    <h1> רשימת הפישינג</h1>
     <ul id="namesList"></ul>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let names = localStorage.getItem('names');
             names = names ? JSON.parse(names) : [];
             const namesList = document.getElementById('namesList');
-            names.forEach(function(name) {
+            names.forEach(function(fullName) {
                 const li = document.createElement('li');
-                li.textContent = name;
+                li.textContent = fullName;
                 namesList.appendChild(li);
             });
         });
